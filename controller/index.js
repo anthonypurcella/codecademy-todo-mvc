@@ -4,7 +4,7 @@ const {create, get, remove} = require('../model/todo');
 exports.create = (req, res) => {
     const form = new formidable.IncomingForm();
     form.keepExtensions = true;
-    form.parse(req, async (errorMonitor, fields) => {
+    form.parse(req, async (err, fields) => {
 
         const { description } = fields;
 
@@ -29,7 +29,7 @@ exports.read = async (req, res) => {
         return res.json({data: task.rows});
     } catch (error) {
         return res.status(400).json({
-            error: err
+            error: error
         });
     }
 }
